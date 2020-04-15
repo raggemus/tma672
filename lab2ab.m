@@ -1,5 +1,5 @@
 function main=lab2ab(mdimension,npunkt)
-x0 = 0;
+x0 = [];
 A = [];
 b = [];
 Aeq = [];
