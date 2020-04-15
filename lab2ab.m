@@ -1,4 +1,4 @@
-function main=gensphere(mdimension,npunkt)
+function main=lab2ab(mdimension,npunkt)
 x0 = 0;
 A = [];
 b = [];
@@ -7,9 +7,9 @@ beq = [];
 lb = -1;
 ub = 1;
 OPT = optimoptions('fmincon','Algorithm','Interior-point');
-x = zeros(npunkt,mdimension);
+x = zeros(npunkt,mdimension)
 
-X = fmincon(@distans,x0,A,b,Aeq,beq,lb,ub,@biv,OPT);
+X = fmincon(@(x)distans,x0,A,b,Aeq,beq,lb,ub,@(x)biv,OPT);
 
 end
 
@@ -19,7 +19,7 @@ end
 %% comments 
 % %objectfunktion = summan av alla avstånd mellan punkterna (det vi ska
 % %maximera)
-% %bivillkor = punkter måste ligga på randen till sfären
+% %bivfunfunillkor = punkter måste ligga på randen till sfären
 % % n= 6;
 % % m = 3;
 % % for i=1:n
