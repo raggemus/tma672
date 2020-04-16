@@ -1,17 +1,24 @@
 function main=lab2ab(mdimension,npunkt)
-x0 = [];
+
 A = [];
 b = [];
 Aeq = [];
 beq = [];
-lb = -1;
-ub = 1;
-OPT = optimoptions('fmincon','Algorithm','Interior-point');
-x = zeros(npunkt,mdimension)
+lb = -1*ones(npunkt,mdimension);
+ub = -1*lb;
+OPT = optimset('Algorithm','interior-point','MaxIter',2000);
+x0 = zeros(npunkt,mdimension);
 
-X = fmincon(@(x)distans,x0,A,b,Aeq,beq,lb,ub,@(x)biv,OPT);
+X = fmincon(@distans,x0,A,b,Aeq,beq,lb,ub,@biv,OPT);
+[x y z] = sphere(50);
+h = surf(x,y,z);
+set(h,'Facealpha',0.5)
+shading interp
+hold on
+scatter3(X(:,1),X(:,2),X(:,3),'filled')
+axis equal
+ end
 
-end
 
 
 

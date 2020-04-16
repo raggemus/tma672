@@ -4,9 +4,9 @@ totdist = 0;
 for i =1:n
     for k=1:n
         totdist = totdist + norm(x(i,:)-x(k,:));
-        %points(k) = totdist;
+        
     end
 end
-
+points = -totdist;
 end
 
