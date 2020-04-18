@@ -1,0 +1,16 @@
+test = lab2ab(3,6);
+A = lab2ab(3,6);
+A = A'*A;
+vec = zeros(1,3);
+vec(1) = (abs(A(1,1)-(A(1,2)+A(1,3))))/A(1,1);
+vec(2) = (abs(A(2,2)-(A(2,1)+A(2,3))))/A(2,2);
+vec(3) = (abs(A(3,3)-(A(3,1)+A(3,2))))/A(3,3);
+alpha = min(vec);
+a = test(1,:)-test(2,:);
+b = test(1,:)-test(3,:);
+affin = cross(a,b);
+affin = affin/norm(affin);
+H = eye(3) - 2*affin*affin';
+% vect = zeros(3,2);
+% vect(:,1)=a;
+% vect(:,2)=b;
