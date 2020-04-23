@@ -1,16 +1,29 @@
-test = lab2ab(3,6);
-A = lab2ab(3,6);
-A = A'*A;
-vec = zeros(1,3);
-vec(1) = (abs(A(1,1)-(A(1,2)+A(1,3))))/A(1,1);
-vec(2) = (abs(A(2,2)-(A(2,1)+A(2,3))))/A(2,2);
-vec(3) = (abs(A(3,3)-(A(3,1)+A(3,2))))/A(3,3);
-alpha = min(vec);
-a = test(1,:)-test(2,:);
-b = test(1,:)-test(3,:);
-affin = cross(a,b);
-affin = affin/norm(affin);
-H = eye(3) - 2*affin*affin';
-% vect = zeros(3,2);
-% vect(:,1)=a;
-% vect(:,2)=b;
+X = lab2ab(3,6);
+A = X'*X;
+a = zeros(1,size(A,2)); %temp
+b = zeros(1,size(A,2)); %alp
+for i = 1:size(A,2)
+    for j = 1:size(A,2)
+        if i ~= j
+             a(i) = a(i) + abs(A(i,j));
+        end
+        b(i) = (abs(A(i,i))-a(i))/abs(A(i,i));
+    end
+end
+alpha =  min(b);
+%e
+I = eye(size(X,2));
+y = X(1,:);
+z = [1 0 0];
+v = zeros(1,3);
+v = (y-z)/alpha;
+v = v/norm(v);
+H = I - 2*v'*v;
+Anew = X*H;
+p1 = Anew(5,:);
+p2 = [0 0 1];
+theta = atan2d(norm(cross(p1,p2)),dot(p1,p2));
+rot = rotx(-theta); 
+Anew1 = Anew*rot
+
+

@@ -11,13 +11,13 @@ x0 = zeros(npunkt,mdimension);
 
 X = fmincon(@distans,x0,A,b,Aeq,beq,lb,ub,@biv,OPT);
 main = X;
-% [x y z] = sphere(50);
-% h = surf(x,y,z);
-% set(h,'Facealpha',0.5)
-% shading interp
-% hold on
-% scatter3(X(:,1),X(:,2),X(:,3),'filled')
-% axis equal
+ [x y z] = sphere(50);
+ h = surf(x,y,z);
+ set(h,'Facealpha',0.5)
+ shading interp
+ hold on
+ scatter3(X(:,1),X(:,2),X(:,3),'filled')
+ axis equal
 end
  
 
